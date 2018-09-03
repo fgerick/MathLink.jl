@@ -2,15 +2,15 @@ module ML
 
 function ptr(T)
   @assert isbits(T)
-  Array{T}(1)
+  Array{T}(undef, 1)
 end
 
 const Cstr = Ptr{Cchar}
 
 include("consts.jl")
 
-const Env = Ptr{Void}
-const Link = Ptr{Void}
+const Env = Ptr{Cvoid}
+const Link = Ptr{Cvoid}
 
 
 function find_lib_ker()    
@@ -90,7 +90,7 @@ function Open(path = mker)
   return link
 end
 
-Close(link::Link) = ccall((:MLClose, mlib), Void, (Link,), link)
+Close(link::Link) = ccall((:MLClose, mlib), Cvoid, (Link,), link)
 
 ErrorMessage(link::Link) =
   ccall((:MLErrorMessage, mlib), Cstr, (Link,), link) |> unsafe_string
@@ -166,7 +166,7 @@ function GetFunction(link::Link)
   return r
 end
 
-ReleaseString(link::Link, s) = ccall((:MLReleaseString, mlib), Void, (Link, Cstr), link, s[1])
-ReleaseSymbol(link::Link, s) = ccall((:MLReleaseSymbol, mlib), Void, (Link, Cstr), link, s[1])
+ReleaseString(link::Link, s) = ccall((:MLReleaseString, mlib), Cvoid, (Link, Cstr), link, s[1])
+ReleaseSymbol(link::Link, s) = ccall((:MLReleaseSymbol, mlib), Cvoid, (Link, Cstr), link, s[1])
 
 end

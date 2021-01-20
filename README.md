@@ -11,7 +11,7 @@ The package requires an installation of either [Mathematica](http://www.wolfram.
 - `JULIA_MATHLINK`: the path of the MathLink dynamic library named
   - `libML64i4.so`/ `libML32i4.so` on Linux
   - `libML64.dll`/ `libML32.dll` on Windows
-  - `mathlink` on macOS
+  - `mathlink` on macOS (if you installed the free Wolfram Engine, the default path is `"/Applications/Wolfram Engine.app/Contents/Resources/Wolfram Player.app/Contents/SystemFiles/Links/MathLink/DeveloperKit/MacOSX-x86-64/CompilerAdditions/mathlink.framework/mathlink"`)
 
 ## Usage
 
